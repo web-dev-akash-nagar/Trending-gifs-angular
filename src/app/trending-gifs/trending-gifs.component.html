@@ -1,0 +1,24 @@
+<div class="main-wrapper">
+    <h1>GIPHY</h1>
+    <input [(ngModel)]="searchText" placeholder="Search" (ngModelChange)="searchData()">
+    <button (click)="searchData()">Search</button>
+  
+    <div class="gif-data">
+      <div class="gif-div" *ngFor="let gif of gifsData">
+        <img [src]="gif.images.fixed_height.url" alt="{{ gif.title }}">
+        <p>{{ gif.title }}</p>
+      </div>
+    </div>
+  
+    <div class="pagination-wrapper">
+      <button [disabled]="currentPage === 1" (click)="loadPreviousPage()">Previous</button>
+      <button [disabled]="gifsData.length < recordsPerPage" (click)="loadNextPage()">Next</button>
+        <select [(ngModel)]="recordsPerPage" (ngModelChange)="getGifsData()">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+    </div>  
+  </div>
+  
